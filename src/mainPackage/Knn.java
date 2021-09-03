@@ -12,7 +12,8 @@ public class Knn {
     public List<SingleData> dataSet = new ArrayList<SingleData>();
     List<Distance> resultPoints = new ArrayList<>();
 
-    public void run() {
+    public double run() {
+        double average_accuracy = 0;
         try {
 
             double total_accuracy = 0;
@@ -26,10 +27,14 @@ public class Knn {
                 total_accuracy += doKNN() ;
             }
 
-            System.out.println("Accuracy: " + String.format("%.2f", total_accuracy*100/10.0) + " %");
+            average_accuracy = total_accuracy*100/10.0;
+            System.out.println("Accuracy: " + String.format("%.2f", average_accuracy) + " %");
+            return average_accuracy;
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return average_accuracy;
     }
 
     public void makeTrainingAndTestDataSet(int turn) {
@@ -76,10 +81,6 @@ public class Knn {
 
     public int testSeverity (SingleData testPoint)
     {
-        int success = 0;
-        int fail = 0;
-        double accuracy = 0;
-
         for (SingleData trainingPoint: dataSet)
         {
             Distance distance = new Distance(testPoint,trainingPoint);
@@ -95,7 +96,7 @@ public class Knn {
     {
         double benign=0, malignant=0;
 
-        for (int i=0; i<15; i++)
+        for (int i=0; i<20; i++)
         {
             if (resultPoints.get(i).getClassName() == 0)
                 benign ++;

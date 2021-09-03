@@ -54,7 +54,7 @@ public class Main extends Application {
         RadioButton circumscribed = new RadioButton("Circumscribed");
         RadioButton microlobulated = new RadioButton("Microlobulated");
         RadioButton obscured = new RadioButton("Obscured");
-        RadioButton ill_defined = new RadioButton("Ill-defined");
+        RadioButton ill_defined = new RadioButton("Ill-Defined");
         RadioButton spiculated = new RadioButton("Spiculated");
         circumscribed.setToggleGroup(marginGroup);
         microlobulated.setToggleGroup(marginGroup);
@@ -90,7 +90,7 @@ public class Main extends Application {
         GridPane.setHalignment(submit, HPos.CENTER);
 
         Knn knn = new Knn();
-        knn.run();
+       double accuracy = knn.run();
 
         SingleData dataPoint = new SingleData();
         submit.setOnAction(event -> {
@@ -144,6 +144,14 @@ public class Main extends Application {
 
         });
 
+        Button measure = new Button("Show Accuracy");
+        root.add(measure, 0, 20);
+        GridPane.setHalignment(submit, HPos.RIGHT);
+
+        measure.setOnAction(event -> {
+            Alert alert =  new Alert(Alert.AlertType.INFORMATION, "Accuracy = " + String.format("%.2f", accuracy) + " %", ButtonType.OK);
+            alert.show();
+        });
 
         primaryStage.setTitle("Breast Cancer Severity Detector");
         primaryStage.setScene(new Scene(root, 800, 600));
