@@ -90,7 +90,7 @@ public class Main extends Application {
         GridPane.setHalignment(submit, HPos.CENTER);
 
         Knn knn = new Knn();
-       double accuracy = knn.run();
+        knn.run();
 
         SingleData dataPoint = new SingleData();
         submit.setOnAction(event -> {
@@ -135,10 +135,14 @@ public class Main extends Application {
             int res = knn.testSeverity(dataPoint);
             if(res == 0) {
                 Alert alert =  new Alert(Alert.AlertType.INFORMATION, "Relax! It's in benign stage. No need to biopsy.", ButtonType.OK);
+                alert.setHeaderText("Benign");
+                alert.setTitle("Severity Level");
                 alert.show();
             }
             else {
                 Alert alert =  new Alert(Alert.AlertType.WARNING, "It's in malignant stage. Need to do biopsy. \nSee a Doctor as soon as possible. !", ButtonType.OK);
+                alert.setHeaderText("Malignant");
+                alert.setTitle("Severity Level");
                 alert.show();
             }
 
@@ -149,7 +153,12 @@ public class Main extends Application {
         GridPane.setHalignment(submit, HPos.RIGHT);
 
         measure.setOnAction(event -> {
-            Alert alert =  new Alert(Alert.AlertType.INFORMATION, "Accuracy = " + String.format("%.2f", accuracy) + " %", ButtonType.OK);
+            Alert alert =  new Alert(Alert.AlertType.INFORMATION, "Accuracy = " + String.format("%.2f", knn.getAccuracy()) + " %\n\n" +
+                    "Precision   = " + String.format("%.2f", knn.getPrecision()) + " %\n\n" +
+                    "Recall = " + String.format("%.2f", knn.getRecall()) + " %\n\n" +
+                    "F1 Score = " + String.format("%.2f", knn.getF1Score()) + " %\n" , ButtonType.OK);
+            alert.setHeaderText("Different Type of Measures");
+            alert.setTitle("Measures");
             alert.show();
         });
 
