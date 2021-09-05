@@ -3,7 +3,7 @@ package mainPackage;
 public class SingleData
 {
     private int cls;
-    private int bd_rads;
+    private int bi_rads;
     private int age;
     private int shape;
     private int margin;
@@ -12,17 +12,17 @@ public class SingleData
     public SingleData() {
     }
 
-    public SingleData(int bd_rads,int age, int shape, int margin, int density, int cls) {
+    public SingleData(int bi_rads,int age, int shape, int margin, int density, int cls) {
         this.cls = cls;
-        this.bd_rads = bd_rads;
+        this.bi_rads = bi_rads;
         this.age = age;
         this.shape = shape;
         this.margin = margin;
         this.density = density;
     }
 
-    public void setBdRads(int bd_rads) {
-        this.bd_rads = bd_rads;
+    public void setBdRads(int bi_rads) {
+        this.bi_rads = bi_rads;
     }
     public void setAge(int age) {
         this.age = age;
@@ -45,7 +45,7 @@ public class SingleData
     }
 
     public int getBdRads() {
-        return bd_rads;
+        return bi_rads;
     }
     public int getAge() {
         return age;
@@ -68,8 +68,8 @@ public class SingleData
 
     @Override
     public String toString() {
-        return "DataPoint{" +
-                "BD-Rads=" + bd_rads +
+        return "Data Point{" +
+                "BI-RADS=" + bi_rads +
                 ", Age=" + age +
                 ", Shape=" + shape +
                 ", Margin=" + margin +

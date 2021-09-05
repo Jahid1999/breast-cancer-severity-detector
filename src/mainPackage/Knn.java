@@ -112,7 +112,7 @@ public class Knn {
         total_f1_score +=(double)(2* pre * rec)/(pre+rec);
 
        accuracy=(double)success/testDataSet.size();
-//       accuracy=(double)(confusionMatrix[0][0] + confusionMatrix[1][1])/testDataSet.size();
+//       accuracy=(double)(tp+tn)/testDataSet.size();
         return accuracy;
     }
 
