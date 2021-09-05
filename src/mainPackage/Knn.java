@@ -77,7 +77,7 @@ public class Knn {
             }
             Collections.sort(resultPoints, new DComparator());
 
-            if(singleData.getCls() == calcClassName())
+            if(singleData.getCls() == detectClass())
                 success++;
             else
                 fail++;
@@ -88,7 +88,7 @@ public class Knn {
             else
                 r=1;
 
-            if(calcClassName() == 0)
+            if(detectClass() == 0)
                 c=0;
             else
                 c=1;
@@ -125,20 +125,22 @@ public class Knn {
         }
         Collections.sort(resultPoints, new DComparator());
 
-        int result = calcClassName();
+        int result = detectClass();
         return result;
     }
 
-    public int calcClassName ()
+    public int detectClass ()
     {
         double benign=0, malignant=0;
 
-        for (int i=0; i<20; i++)
+        for (int i=0; i<10; i++)
         {
             if (resultPoints.get(i).getClassName() == 0)
-                benign ++;
+                benign +=1.0/(resultPoints.get(i).getDistance()+1);
+//                benign++;
             else if (resultPoints.get(i).getClassName() == 1)
-                malignant ++;
+                malignant +=1.0/(resultPoints.get(i).getDistance()+1);
+//                malignant++;
         }
 
         if(benign > malignant)

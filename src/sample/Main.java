@@ -109,6 +109,8 @@ public class Main extends Application {
                 dataPoint.setShape(3);
             else if (irregular.isSelected())
                 dataPoint.setShape(4);
+            else
+                dataPoint.setShape(120);
 
             //margin
             if (circumscribed.isSelected())
@@ -121,6 +123,8 @@ public class Main extends Application {
                 dataPoint.setMargin(4);
             else if (spiculated.isSelected())
                 dataPoint.setMargin(5);
+            else
+                dataPoint.setMargin(120);
 
             //density
             if (high.isSelected())
@@ -131,6 +135,8 @@ public class Main extends Application {
                 dataPoint.setDensity(3);
             else if (fat_containing.isSelected())
                 dataPoint.setDensity(4);
+            else
+                dataPoint.setDensity(120);
 
             int res = knn.testSeverity(dataPoint);
             if(res == 0) {
@@ -148,7 +154,7 @@ public class Main extends Application {
 
         });
 
-        Button measure = new Button("Show Accuracy");
+        Button measure = new Button("Show Measures");
         root.add(measure, 0, 20);
         GridPane.setHalignment(submit, HPos.RIGHT);
 
